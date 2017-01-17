@@ -1,5 +1,4 @@
-<?php include_once('includes/header.html'); ?>
-
+<?php include_once('includes/header.php'); ?>
 <div class="container">
     <div id="loginbox" class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         <div class="panel">

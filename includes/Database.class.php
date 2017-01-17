@@ -32,7 +32,9 @@ class Database
     public function fetchAll($query, $params = NULL)
     {
         /** @var $query string */
-        return $this->db->prepare($query)->execute($params)->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->db->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -42,7 +44,9 @@ class Database
     */
     public function fetch($query, $params = NULL)
     {
-        return $this->db->prepare($query)->execute($params)->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->db->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
