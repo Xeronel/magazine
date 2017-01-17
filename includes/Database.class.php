@@ -29,10 +29,10 @@ class Database
     *
     * @return array[]
     */
-    public function fetchAll($query)
+    public function fetchAll($query, $params = NULL)
     {
         /** @var $query string */
-        return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->db->prepare($query)->execute($params)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -40,15 +40,15 @@ class Database
     *
     * @return array[]
     */
-    public function fetch($query)
+    public function fetch($query, $params = NULL)
     {
-        return $this->db->query($query)->fetch(PDO::FETCH_ASSOC);
+        return $this->db->prepare($query)->execute($params)->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
     * Get or create the single instance of this class
     *
-    * @return DB
+    * @return Database
     */
     public static function getInstance()
     {
