@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-faded">
         <button
             class="navbar-toggler navbar-toggler-right"
             type="button"
