@@ -11,6 +11,11 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
