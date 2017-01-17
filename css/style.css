@@ -1,0 +1,19 @@
+body {
+    background-color: #D8DCE3;
+}
+
+#loginbox {
+    max-width: 540px;
+    margin-top: 50px;
+}
+
+.panel-heading {
+    background-color: #2A2A2A;
+    border-color: #2A2A2A;
+    color: white;
+}
+
+.panel-body {
+    margin-bottom: 10px;
+    padding-top: 30px;
+}
