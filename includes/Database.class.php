@@ -54,7 +54,7 @@ class Database
     {
         // If an instance doesn't exist create one, else return it
         if (!self::$db_instance) {
-            self::$db_instance = new DB();
+            self::$db_instance = new Database();
         }
         return self::$db_instance;
     }
