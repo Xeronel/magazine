@@ -31,7 +31,6 @@ class Database
     */
     public function fetchAll($query, $params = NULL)
     {
-        /** @var $query string */
         $stmt = $this->db->prepare($query);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
