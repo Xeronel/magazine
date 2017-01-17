@@ -1,6 +1,6 @@
 <?php include_once('includes/header.html'); ?>
 
-    <nav class="navbar navbar-tottleable-sm navbar-inverse bg-inverse">
+    <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
