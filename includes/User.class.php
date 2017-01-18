@@ -6,11 +6,9 @@ require 'includes/Database.class.php';
  */
 class User
 {
-    private static $db;
-
-    public function __construct()
+    private static __get($db)
     {
-        $this->db = Database::getInstance();
+        return Database::getInstance();
     }
 
     public function register($username, $password, $password2, $firstname, $lastname, $email)
