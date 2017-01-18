@@ -20,6 +20,28 @@ class User
         }
     }
 
+    public static function logout()
+    {
+        // Clear session variables
+        $_SESSION = array();
+
+        // Remove session cookie
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        // Destroy the session
+        session_destroy();
+
+        // Redirect to home
+        header("Location: /");
+        exit();
+    }
+
     public static function is_authenticated()
     {
         if (isset($_SESSION['user_id'])) {
