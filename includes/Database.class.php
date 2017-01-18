@@ -49,6 +49,17 @@ class Database
     }
 
     /**
+    * Execute
+    *
+    * @return void
+    */
+    public function execute($query, $params = NULL)
+    {
+        $stmt = $this->db->prepare($query);
+        $stmt->execute($params);
+    }
+
+    /**
     * Get or create the single instance of this class
     *
     * @return Database

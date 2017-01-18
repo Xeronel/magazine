@@ -4,8 +4,17 @@ require_once 'includes/User.class.php';
 
 // If try to login if the required post data exists
 $requires = array('username', 'password', 'password2', 'first_name', 'last_name', 'email');
+$alert = '';
 if (!array_diff($requires, array_keys($_POST))) {
-    User::login($_POST['username'], $_POST['password']);
+    if ($_POST['password'] != $_POST['password2']) {
+        $alert = 'Passwords do not match!';
+    } else {
+        $alert = User::register(
+            $_POST['username'], $_POST['password'],
+            $_POST['first_name'], $_POST['last_name'],
+            $_POST['email']
+        );
+    }
 }
 ?>
 
