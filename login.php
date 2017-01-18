@@ -8,6 +8,8 @@ if (!array_diff($requires, array_keys($_POST))) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     User::login();
+    header('Location: $_SERVER[HTTP_HOST]');
+    exit();
 }
 ?>
 
