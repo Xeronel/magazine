@@ -15,7 +15,7 @@ class User
             $_SESSION['username'] = $user['username'];
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
-            header("Location: {$_SERVER[HTTP_HOST]}");
+            header("Location: /");
             exit();
         }
     }
