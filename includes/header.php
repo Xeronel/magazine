@@ -34,7 +34,7 @@
                         <a href="/">Home</a>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav pull-right">
+                <ul class="nav navbar-nav navbar-right">
                     <li id="login">
                         <a href="/login.php">Login</a>
                     </li>
