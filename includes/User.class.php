@@ -6,10 +6,10 @@ require_once 'includes/Database.class.php';
  */
 class User
 {
-    public function register($username, $password, $firstname, $lastname, $email)
+    public static function register($username, $password, $firstname, $lastname, $email)
     {
         $pwhash = password_hash($password, PASSWORD_DEFAULT);
-        
+
         $db = Database::getInstance();
         $db->execute(
             "INSERT INTO users (username, first_name, last_name, email, pwhash)" .
