@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once 'includes/User.class.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,9 +38,13 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="login">
-                        <a href="/login.php">Login</a>
-                    </li>
+                    <?php
+                    if (User::is_authenticated()) {
+                        echo '<li id="logout"><a href="/logout.php">Logout</a></li>';
+                    } else {
+                        echo '<li id="login"><a href="/login.php">Login</a></li>';
+                    }
+                    ?>
                 </ul>
             </div>
 
