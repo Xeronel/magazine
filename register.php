@@ -24,13 +24,13 @@ if (!array_diff($requires, array_keys($_POST))) {
             <div class="panel-heading">
                 <div class="panel-title">Sign Up</div>
             </div>
-            <?php
-            if ($alert) {
-                echo "<div class=\"alert alert-danger\" role=\"alert\">{$alert}<div>";
-            }
-            ?>
 
             <div class="panel-body">
+                <?php
+                if ($alert) {
+                    echo "<div class=\"alert alert-danger\" role=\"alert\">{$alert}<div>";
+                }
+                ?>
                 <form id="login_form" class="form-horizontal" method="post">
                     <div class="form-group">
                         <label for="username">Username</label>
