@@ -26,7 +26,7 @@ if (!array_diff($requires, array_keys($_POST))) {
             </div>
             <?php
             if ($alert) {
-                echo "<div class="alert alert-danger" role="alert">{$alert}<div>";
+                echo "<div class=\"alert alert-danger\" role=\"alert\">{$alert}<div>";
             }
             ?>
 
