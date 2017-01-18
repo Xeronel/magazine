@@ -18,6 +18,10 @@ class User
                 array($username, $firstname, $lastname, $email, $pwhash)
             );
         } catch (PDOException $e) {
+            // Unique key violation
+            if ($e->getCode() == Database::ERR_DUPLICATE_KEY) {
+                return "User already exists!";
+            }
             return $e->getCode();
         }
     }
