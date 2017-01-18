@@ -7,7 +7,7 @@ class Database
     public $db;
 
     // Error Constants
-    constant $ERR_DUPLICATE_KEY = "23000";
+    public constant $ERR_DUPLICATE_KEY = "23000";
 
     // Used for singleton pattern
     private static $db_instance;
