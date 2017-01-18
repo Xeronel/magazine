@@ -6,14 +6,10 @@ require 'includes/Database.class.php';
  */
 class User
 {
-    public function __get($db)
-    {
-        return Database::getInstance();
-    }
-
     public static function login($username, $password)
     {
-        $user = $this->db->fetch('SELECT * FROM user WHERE username = ?', array($username));
+        $db = Database::getInstance();
+        $user = $db->fetch('SELECT * FROM user WHERE username = ?', array($username));
         if (password_verify($password, $user['pwhash'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
