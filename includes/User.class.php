@@ -6,15 +6,14 @@ require_once 'includes/Database.class.php';
  */
 class User
 {
-    private static $db = Database::getInstance;
-
     public function register($username, $password, $password2, $firstname, $lastname, $email)
     {
     }
 
     public static function login($username, $password)
     {
-        $user = self::db()->fetch('SELECT * FROM users  WHERE username = ?', array($username));
+        $db = Database::getInstance();
+        $user = $db->fetch('SELECT * FROM users  WHERE username = ?', array($username));
         if (password_verify($password, $user['pwhash'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
