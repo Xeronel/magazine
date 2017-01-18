@@ -36,6 +36,9 @@ if (!array_diff($requires, array_keys($_POST))) {
                         </div>
                     </div>
                 </form>
+                <span id="register" class="pull-right">
+                    <a href="/register.php">Don't have an account?</a>
+                </span>
             </div>
 
         </div>

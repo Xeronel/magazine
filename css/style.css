@@ -2,17 +2,32 @@ body {
     background-color: #D8DCE3;
 }
 
-#loginbox {
-    max-width: 540px;
-    margin-top: 50px;
+#loginbox .panel-body {
+    padding-top: 30px;
 }
 
 #loginbox .input-group {
     margin-bottom: 25px;
 }
 
+#registerbox,
+#loginbox {
+    max-width: 540px;
+    margin-top: 50px;
+}
+
+#registerbox .form-group,
 #loginbox .form-group {
     margin-top: 10px;
+}
+
+#registerbox .form-group {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#register {
+    font-size: 0.8em;
 }
 
 .navbar {
@@ -23,9 +38,4 @@ body {
     background-color: #2A2A2A;
     border-color: #2A2A2A;
     color: white;
-}
-
-.panel-body {
-    margin-bottom: 10px;
-    padding-top: 30px;
 }
