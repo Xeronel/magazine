@@ -7,6 +7,14 @@ body {
     margin-top: 50px;
 }
 
+#loginbox .input-group {
+    margin-bottom: 25px;
+}
+
+#loginbox .form-group {
+    margin-top: 10px;
+}
+
 .navbar {
     border-radius: unset;
 }
