@@ -16,6 +16,10 @@ if (!array_diff($requires, array_keys($_POST))) {
         );
     }
 }
+
+if ($alert) {
+    print_r($alert);
+}
 ?>
 
 <div class="container">

@@ -11,11 +11,15 @@ class User
         $pwhash = password_hash($password, PASSWORD_DEFAULT);
 
         $db = Database::getInstance();
-        $db->execute(
-            "INSERT INTO users (username, first_name, last_name, email, pwhash)" .
-            "VALUES (?, ?, ?, ?, ?)",
-            array($username, $firstname, $lastname, $email, $pwhash)
-        );
+        try {
+            $db->execute(
+                "INSERT INTO users (username, first_name, last_name, email, pwhash)" .
+                "VALUES (?, ?, ?, ?, ?)",
+                array($username, $firstname, $lastname, $email, $pwhash)
+            );
+        } catch (PDOException $e) {
+            return e->getCode();
+        }
     }
 
     public static function login($username, $password)
