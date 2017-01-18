@@ -19,7 +19,7 @@ if (!array_diff($requires, array_keys($_POST))) {
 ?>
 
 <div class="container">
-    <div id="registerbox" class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div id="registerbox" class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
         <div class="panel">
             <div class="panel-heading">
                 <div class="panel-title">Sign Up</div>
