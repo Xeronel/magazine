@@ -28,7 +28,7 @@ if (!array_diff($requires, array_keys($_POST))) {
             <div class="panel-body">
                 <?php
                 if ($alert) {
-                    echo "<div class=\"alert alert-danger\" role=\"alert\">{$alert}<div>";
+                    echo "<div class='alert alert-danger' role='alert'>{$alert}</div>";
                 }
                 ?>
                 <form id="login_form" class="form-horizontal" method="post">
