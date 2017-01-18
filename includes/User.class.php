@@ -10,7 +10,7 @@ class User
 
     public function __construct()
     {
-        $self->db = Database::getInstance();
+        $this->db = Database::getInstance();
     }
 
     public function register($username, $password, $password2, $firstname, $lastname, $email)
