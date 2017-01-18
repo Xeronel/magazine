@@ -18,7 +18,7 @@ class User
                 array($username, $firstname, $lastname, $email, $pwhash)
             );
         } catch (PDOException $e) {
-            return e->getCode();
+            return $e->getCode();
         }
     }
 
