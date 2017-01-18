@@ -22,7 +22,7 @@ class User
             if ($e->getCode() == Database::ERR_DUPLICATE_KEY) {
                 return "User already exists!";
             }
-            return $e->getCode();
+            return "Error {$e->getCode()} occurred";
         }
     }
 
