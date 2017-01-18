@@ -13,7 +13,7 @@ class User
         $db = Database::getInstance();
         $db->execute(
             "INSERT INTO users (username, first_name, last_name, email, pwhash)" .
-            "VALUES (?, ?, ?, ?, ?, ?)",
+            "VALUES (?, ?, ?, ?, ?)",
             array($username, $firstname, $lastname, $email, $pwhash)
         );
     }
