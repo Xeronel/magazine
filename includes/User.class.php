@@ -6,12 +6,23 @@ require_once 'includes/Database.class.php';
  */
 class User
 {
-    public static function register($username, $password, $firstname, $lastname, $email)
+    public static function register($username, $password, $password2, $firstname, $lastname, $email)
     {
+        // Enforce username max length in case mysql strict mode is not enabled
+        if (strlen($username) > 30) {
+            return "Username too long. Max length: 30 characters";
+        }
+
+        // Make sure passwords match
+        if ($password != password2) {
+            return "Passwords do not match!";
+        }
+
         $pwhash = password_hash($password, PASSWORD_DEFAULT);
 
-        $db = Database::getInstance();
+        // Try to add the user, return an error message on failure
         try {
+            $db = Database::getInstance();
             $db->execute(
                 "INSERT INTO users (username, first_name, last_name, email, pwhash)" .
                 "VALUES (?, ?, ?, ?, ?)",
