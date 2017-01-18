@@ -1,15 +1,12 @@
 <?php
-require 'includes/Database.class.php';
+require_once 'includes/Database.class.php';
 
 /**
  * Provide user functions
  */
 class User
 {
-    private static __get($db)
-    {
-        return Database::getInstance();
-    }
+    private static $db = Database::getInstance;
 
     public function register($username, $password, $password2, $firstname, $lastname, $email)
     {
@@ -17,7 +14,7 @@ class User
 
     public static function login($username, $password)
     {
-        $user = $this->db->fetch('SELECT * FROM users  WHERE username = ?', array($username));
+        $user = self::db()->fetch('SELECT * FROM users  WHERE username = ?', array($username));
         if (password_verify($password, $user['pwhash'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
