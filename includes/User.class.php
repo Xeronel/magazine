@@ -1,5 +1,5 @@
 <?php
-require_once('Database.class.php');
+require '/includes/Database.class.php';
 
 /**
  * Provide user functions
@@ -21,3 +21,4 @@ class User
         }
     }
 }
+?>

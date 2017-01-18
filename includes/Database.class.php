@@ -62,3 +62,4 @@ class Database
         return self::$db_instance;
     }
 }
+?>
