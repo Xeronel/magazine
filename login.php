@@ -4,8 +4,7 @@ require_once 'includes/User.class.php';
 
 // If try to login if the required post data exists
 $requires = array('username', 'password');
-if (!array_diff($requires, array_keys($_POST)))
-{
+if (!array_diff($requires, array_keys($_POST))) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     User::login();
