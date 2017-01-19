@@ -139,7 +139,7 @@ class User
         }
     }
 
-    public static function userList()
+    public static function list()
     {
         $db = Database::getInstance();
         $users = $db->fetchAll("SELECT * FROM users");

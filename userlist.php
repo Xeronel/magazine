@@ -25,8 +25,8 @@ if (!User::inGroup('admin')) {
                 </thead>
                 <tbody>
                     <?php
-                    $userlist = User::userList();
-                    foreach (User::userList() as $user) {
+                    $userlist = User::list();
+                    foreach (User::list() as $user) {
                         echo '<tr>';
                         echo "<td>{$user->id}</td>";
                         echo "<td>{$user->username}</td>";
