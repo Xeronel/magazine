@@ -21,13 +21,17 @@ body {
     margin-top: 10px;
 }
 
-#registerbox .form-group {
+.form-horizontal .form-group {
     margin-left: auto;
     margin-right: auto;
 }
 
 #register {
     font-size: 0.8em;
+}
+
+#submit {
+    margin-left: 5px;
 }
 
 .navbar {
