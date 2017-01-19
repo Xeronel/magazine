@@ -35,7 +35,6 @@ dataTables.init = function () {
     // Initialize userlist datatable if it exists
     var userlist = $('#userlist');
     if (userlist.length > 0) {
-        // Initialize DataTable
         userlist.DataTable({
             order: [[0, 'asc']],
             autoWidth: false,
