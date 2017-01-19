@@ -183,6 +183,11 @@ class User
     {
         $db = Database::getInstance();
 
+        // Do not allow the anonymous user to be edited
+        if ($user_id == self::ANONYMOUS_ID) {
+            return false;
+        }
+
         // Don't use is_null() because if a post request is sent password may be passed as an empty string
         if ($password == NULL) {
             $query = "UPDATE users SET username = ?, first_name = ?, last_name = ?, email = ? WHERE id = ?";
