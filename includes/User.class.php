@@ -6,6 +6,19 @@ require_once 'includes/Database.class.php';
 */
 class User
 {
+    public $username;
+    public $firstname;
+    public $lastname;
+    public $email;
+
+    public function __construct($username, $firstname, $lastname, $email)
+    {
+        $this->username = strtolower($username);
+        $this->firstname = ucfirst($firstname);
+        $this->lastname = ucfirst($lastname);
+        $this->email = strtolower($email);
+    }
+
     public static function register($username, $password, $password2, $firstname, $lastname, $email)
     {
         // Enforce username max length in case mysql strict mode is not enabled
@@ -112,7 +125,17 @@ class User
     public static function userList()
     {
         $db = Database::getInstance();
-        return $db->fetchAll("SELECT * FROM users");
+        $users = $db->fetchAll("SELECT * FROM users");
+        $result = array();
+        foreach ($users as $user) {
+            $result[] = new User(
+                $user['username'],
+                $user['first_name'],
+                $user['last_name'],
+                $user['email']
+            );
+        }
+        return $result;
     }
 }
 ?>
