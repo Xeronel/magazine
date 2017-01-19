@@ -47,3 +47,7 @@ body {
 .panel-body {
     background-color: white;
 }
+
+td > a {
+    display: block;
+}
