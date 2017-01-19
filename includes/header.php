@@ -55,6 +55,11 @@ Log::pageView();
                         echo '<li id="access_log">';
                         echo '<a href="/accesslog.php">Access Log</a>';
                         echo '</li>';
+
+                        // Web log link
+                        echo '<li id="web_log">';
+                        echo '<a href="/weblog.php">Web Log</a>';
+                        echo '</li>';
                     } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

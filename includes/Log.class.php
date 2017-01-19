@@ -2,7 +2,7 @@
 require_once 'includes/Database.class.php';
 require_once 'includes/User.class.php';
 
-class Log
+class AccessLog
 {
     public $id;
     public $user_id;
@@ -10,15 +10,36 @@ class Log
     public $action;
     public $action_time;
 
-    public function __construct($id, $user_id, $username, $action, $action_time)
+    public function __construct($log_array)
     {
-        $this->id = $id;
-        $this->user_id = $user_id;
-        $this->username = $username;
-        $this->action = $action;
-        $this->action_time = $action_time;
+        $this->id = $log_array['id'];
+        $this->user_id = $log_array['user_id'];
+        $this->username = $log_array['username'];
+        $this->action = $log_array['action'];
+        $this->action_time = $log_array['action_time'];
     }
+}
 
+class WebLog
+{
+    public $id;
+    public $user_id;
+    public $username;
+    public $page;
+    public $viewed;
+
+    public function __construct($log_array)
+    {
+        $this->id = $log_array['id'];
+        $this->user_id = $log_array['user_id'];
+        $this->username = $log_array['username'];
+        $this->page = $log_array['page'];
+        $this->viewed = $log_array['viewed'];
+    }
+}
+
+class Log
+{
     public static function pageView()
     {
         $user = User::getCurrentUser();
@@ -44,16 +65,16 @@ class Log
         self::logAccess("REGISTER: {$username}");
     }
 
-    public static function getLog()
+    public static function getAccessLog()
     {
-        $db = Database::getInstance();
-        $log = $db->fetchAll('SELECT access_log.*, users.username FROM access_log LEFT JOIN users ON access_log.user_id = users.id');
+        $query = 'SELECT access_log.*, users.username FROM access_log LEFT JOIN users ON access_log.user_id = users.id';
+        return self::createLog($query, 'AccessLog');
+    }
 
-        $result = array();
-        foreach ($log as $log_entry) {
-            $result[] = self::createLog($log_entry);
-        }
-        return $result;
+    public static function getWebLog()
+    {
+        $query = 'SELECT web_log.*, users.username FROM web_log LEFT JOIN users ON web_log.user_id = users.id';
+        return self::createLog($query, 'WebLog');
     }
 
     private static function logAccess($action)
@@ -66,15 +87,17 @@ class Log
         );
     }
 
-    private static function createLog($log_array)
+    private static function createLog($query, $classname)
     {
-        return new Log(
-            $log_array['id'],
-            $log_array['user_id'],
-            $log_array['username'],
-            $log_array['action'],
-            $log_array['action_time']
-        );
+        $db = Database::getInstance();
+        $log = $db->fetchAll($query);
+
+        $log_object_array = array();
+        foreach ($log as $log_entry) {
+            $log_object_array[] = new $classname($log_entry);
+        }
+
+        return $log_object_array;
     }
 }
 ?>

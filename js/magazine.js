@@ -6,6 +6,7 @@ nav.idMap = {
     'stats.php': '#stats',
     'userlist.php': '#user_list',
     'accesslog.php': '#access_log',
+    'weblog.php': '#web_log',
     '': '#home'
 }
 nav.setActive = function() {
@@ -23,49 +24,55 @@ nav.setActive = function() {
     e.addClass('active');
 }
 
-// UserList Object
-var userList = {};
-// User list initialize function
-userList.init = function() {
-    var e = $('#userlist');
-    if (e.length > 0) {
+var dataTables = {};
+dataTables.user_render = function(uid_idx) {
+    return function(data, type, full, meta) {
+        return '<a href="/edit_user.php?uid=' + full[uid_idx] + '">' + data + '</a>';
+    };
+}
+
+dataTables.init = function () {
+    // Initialize userlist datatable if it exists
+    var userlist = $('#userlist');
+    if (userlist.length > 0) {
         // Initialize DataTable
-        e.DataTable({
+        userlist.DataTable({
             order: [[0, 'asc']],
             autoWidth: false,
             columnDefs: [{
                 targets: 'user',
-                render: function(data, type, full, meta) {
-                    return '<a href="/edit_user.php?uid=' + full[0] + '">' + data + '</a>';
-                }
+                render: dataTables.user_render(0)
             }]
         });
     }
-}
 
-// AccessLog Object
-var accessLog = {};
-// Access log initialize function
-accessLog.init = function() {
-    var e = $('#accesslog');
-    if (e.length > 0) {
-        e.DataTable({
+    // Initialize accesslog datatable if it exists
+    var accesslog = $('#accesslog');
+    if (accesslog.length > 0) {
+        accesslog.DataTable({
             order: [[3, 'desc']],
             autoWidth: false,
             columnDefs: [
                 {width: "15%", targets: 0},
-                {
-                    targets: 'user',
-                    render: function(data, type, full, meta) {
-                        return '<a href="/edit_user.php?uid=' + full[0] + '">' + data + '</a>';
-                    }
-                }]
-            });
-        }
+                {targets: 'user', render: dataTables.user_render(0)}
+            ]
+        });
     }
 
-    $(function() {
-        nav.setActive();
-        userList.init();
-        accessLog.init();
-    });
+    // Initialize weblog datatable if it exists
+    var weblog = $('#weblog');
+    if (weblog.length > 0) {
+        weblog.DataTable({
+            order: [[3, 'desc']],
+            autoWidth: false,
+            columnDefs: [
+                {targets: 'user', render: dataTables.user_render(0)}
+            ]
+        });
+    }
+}
+
+$(function() {
+    nav.setActive();
+    dataTables.init();
+});
