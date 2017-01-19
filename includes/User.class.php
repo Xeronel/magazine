@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/Database.class.php';
+require_once 'includes/Log.class.php';
 
 /**
 * Provide user functions
@@ -52,7 +53,7 @@ class User
                 "VALUES (?, ?, ?, ?, ?)",
                 array($username, $firstname, $lastname, $email, $pwhash)
             );
-
+            Log::register($username);
             // Login after successful registration
             self::login($username, $password);
         } catch (PDOException $e) {
@@ -76,6 +77,7 @@ class User
             $_SESSION['username'] = $user['username'];
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
+            Log::login();
             header("Location: /");
             exit();
         }
@@ -83,6 +85,9 @@ class User
 
     public static function logout()
     {
+        session_start();
+        Log::logout();
+
         // Clear session variables
         $_SESSION = array();
 

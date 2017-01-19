@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once 'includes/User.class.php';
+require_once 'includes/Log.class.php';
+
+Log::pageView();
 ?>
 <!DOCTYPE html>
 <html lang="en">
