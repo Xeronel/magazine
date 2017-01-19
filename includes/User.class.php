@@ -13,7 +13,7 @@ class User
     public $lastname;
     public $email;
 
-    private const ANONYMOUS_ID = 2;
+    const ANONYMOUS_ID = 2;
 
     public function __construct($id, $username, $firstname, $lastname, $email)
     {
