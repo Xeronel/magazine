@@ -15,6 +15,13 @@ if (!isset($_GET['uid'])) {
 }
 
 $user = User::find($_GET['uid']);
+
+if (isset($_POST['delete'])) {
+    $result = User::delete($user->id);
+    if ($result) {
+        header('Location: /userlist.php');
+    }
+}
 ?>
 
 <div class="container">

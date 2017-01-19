@@ -29,7 +29,7 @@ class User
         }
 
         // Make sure passwords match
-        if ($password != password2) {
+        if ($password != $password2) {
             return "Passwords do not match!";
         }
 
@@ -158,6 +158,18 @@ class User
             $user = self::createUser($user);
         }
         return $user;
+    }
+
+    public static function delete($user_id)
+    {
+        // Don't allow the user to delete themself
+        if (self::isAuthenticated() && $_SESSION['user_id'] == $user_id) {
+            return false;
+        }
+        
+        $db = Database::getInstance();
+        $result = $db->execute('DELETE FROM users WHERE id = ?', array($user_id));
+        return $result;
     }
 
     private static function createUser($user_array) {
