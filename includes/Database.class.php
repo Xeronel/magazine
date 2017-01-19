@@ -1,7 +1,7 @@
 <?php
 /**
- * Connect to the database and provide easy access to common functions
- */
+* Connect to the database and provide easy access to common functions
+*/
 class Database
 {
     public $db;
@@ -21,7 +21,7 @@ class Database
         // Create a new conncetion to the database
         $this->db = new PDO("mysql:host={$config['db_host']};" .
                             "dbname={$config['db_name']};charset=utf8mb4",
-        $config['db_user'], $config['db_pass']);
+                            $config['db_user'], $config['db_pass']);
 
         // Throw exceptions on SQL error
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -54,12 +54,13 @@ class Database
     /**
     * Execute
     *
-    * @return void
+    * @return array()
     */
     public function execute($query, $params = NULL)
     {
         $stmt = $this->db->prepare($query);
-        $stmt->execute($params);
+        $result = $stmt->execute($params);
+        return $result;
     }
 
     /**
