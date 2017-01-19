@@ -16,12 +16,30 @@ if (!isset($_GET['uid'])) {
 
 $user = User::find($_GET['uid']);
 
+// Handle user deletion
 if (isset($_POST['delete'])) {
     $result = User::delete($user->id);
     if ($result) {
         header('Location: /userlist.php');
     }
 }
+
+// Handle user edit
+if (isset($_POST['submit'])) {
+    $requires = array('username', 'first_name', 'last_name', 'email', 'password');
+    if (!array_diff($requires, array_keys($_POST))) {
+        User::update(
+            $user->id,
+            $_POST['username'],
+            $_POST['first_name'],
+            $_POST['last_name'],
+            $_POST['email'],
+            $_POST['password']
+        );
+        $user = User::find($_GET['uid']);
+    }
+}
+
 ?>
 
 <div class="container">

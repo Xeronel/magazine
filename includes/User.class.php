@@ -166,10 +166,27 @@ class User
         if (self::isAuthenticated() && $_SESSION['user_id'] == $user_id) {
             return false;
         }
-        
+
         $db = Database::getInstance();
         $result = $db->execute('DELETE FROM users WHERE id = ?', array($user_id));
         return $result;
+    }
+
+    public static function update($user_id, $username, $firstname, $lastname, $email, $password = NULL)
+    {
+        $db = Database::getInstance();
+
+        // Don't use is_null() because if a post request is sent password may be passed as an empty string
+        if ($password == NULL) {
+            $query = "UPDATE users SET username = ?, first_name = ?, last_name = ?, email = ? WHERE id = ?";
+            $params = array($username, $firstname, $lastname, $email, $user_id);
+        } else {
+            $pwhash = password_hash($password, PASSWORD_DEFAULT);
+            $query = "UPDATE users SET username = ?, first_name = ?, last_name = ?, email = ?, pwhash = ? WHERE id = ?";
+            $params = array($username, $firstname, $lastname, $email, $pwhash, $user_id);
+        }
+
+        return $db->execute($query, $params);
     }
 
     private static function createUser($user_array) {
