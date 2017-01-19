@@ -2,8 +2,8 @@
 require_once 'includes/Database.class.php';
 
 /**
- * Provide user functions
- */
+* Provide user functions
+*/
 class User
 {
     public static function register($username, $password, $password2, $firstname, $lastname, $email)
@@ -61,9 +61,8 @@ class User
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-            );
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]);
         }
 
         // Destroy the session
@@ -80,6 +79,34 @@ class User
             return true;
         }
         return false;
+    }
+
+    public static function inGroup($group, $user_id = NULL)
+    {
+        // If the user isn't authenticated and a specific user_id wasn't requested
+        // return false because the current user is anonymous
+        if (!self::isAuthenticated() && is_null($user_id)) {
+            return false;
+        }
+
+        // If a user id was not passed get it from the current session
+        if (is_null($user_id)) {
+            $user_id = $_SESSION['user_id'];
+        }
+
+        // Check if user_id is in the group
+        $db = Database::getInstance();
+        $result = $db->fetch(
+            "SELECT * FROM permissions WHERE group_name = ? AND user_id = ?",
+            array($group, $user_id)
+        );
+
+        // If a result is returned the user is in the group
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 ?>

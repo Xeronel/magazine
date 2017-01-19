@@ -4,6 +4,8 @@ var nav = {};
 // Matches pathname to element id
 nav.idMap = {
     'login.php': '#login',
+    'stats.php': '#stats',
+    'userlist.php': '#user_list',
     '': '#home'
 }
 

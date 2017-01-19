@@ -36,6 +36,17 @@ require_once 'includes/User.class.php';
                     <li id="home">
                         <a href="/">Home</a>
                     </li>
+                    <?php if(User::inGroup('admin')) {
+                        // Statistics link
+                        echo '<li id="stats">';
+                        echo '<a href="/stats.php">Statistics</a>';
+                        echo '</li>';
+
+                        // User list link
+                        echo '<li id="user_list">';
+                        echo '<a href="/userlist.php">User List</a>';
+                        echo '</li>';
+                    } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php
