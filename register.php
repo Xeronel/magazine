@@ -56,7 +56,7 @@ if (!array_diff($requires, array_keys($_POST))) {
                         <label for="first_name">First Name</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your email address">
+                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your first name">
                         </div>
                     </div>
 
@@ -64,7 +64,7 @@ if (!array_diff($requires, array_keys($_POST))) {
                         <label for="last_name">Last Name</label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your email address">
+                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter your last name">
                         </div>
                     </div>
 
