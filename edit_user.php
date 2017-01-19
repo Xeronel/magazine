@@ -14,7 +14,7 @@ if (!isset($_GET['uid'])) {
     exit();
 }
 
-$user = User::getUser($_GET['uid']);
+$user = User::find($_GET['uid']);
 ?>
 
 <div class="container">

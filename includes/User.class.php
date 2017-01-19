@@ -150,7 +150,7 @@ class User
         return $result;
     }
 
-    public static function getUser($user_id)
+    public static function find($user_id)
     {
         $db = Database::getInstance();
         $user = $db->fetch('SELECT * FROM users WHERE id = ?', array($user_id));
