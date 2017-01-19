@@ -145,15 +145,29 @@ class User
         $users = $db->fetchAll("SELECT * FROM users");
         $result = array();
         foreach ($users as $user) {
-            $result[] = new User(
-                $user['id'],
-                $user['username'],
-                $user['first_name'],
-                $user['last_name'],
-                $user['email']
-            );
+            $result[] = self::createUser($user);
         }
         return $result;
+    }
+
+    public static function getUser($user_id)
+    {
+        $db = Database::getInstance();
+        $user = $db->fetch('SELECT * FROM users WHERE id = ?', array($user_id));
+        if ($user) {
+            $user = self::createUser($user);
+        }
+        return $user;
+    }
+
+    private static function createUser($user_array) {
+        return new User(
+            $user_array['id'],
+            $user_array['username'],
+            $user_array['first_name'],
+            $user_array['last_name'],
+            $user_array['email']
+        );
     }
 }
 ?>
