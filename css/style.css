@@ -39,3 +39,7 @@ body {
     border-color: #2A2A2A;
     color: white;
 }
+
+.panel-body {
+    background-color: white;
+}
