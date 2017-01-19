@@ -6,16 +6,18 @@ require_once 'includes/Database.class.php';
 */
 class User
 {
+    public $id;
     public $username;
     public $firstname;
     public $lastname;
     public $email;
 
-    public function __construct($username, $firstname, $lastname, $email)
+    public function __construct($id, $username, $firstname, $lastname, $email)
     {
+        $this->id = $id;
         $this->username = strtolower($username);
-        $this->firstname = ucfirst($firstname);
-        $this->lastname = ucfirst($lastname);
+        $this->firstname = ucfirst(strtolower($firstname));
+        $this->lastname = ucfirst(strtolower($lastname));
         $this->email = strtolower($email);
     }
 
@@ -35,12 +37,21 @@ class User
 
         // Try to add the user, return an error message on failure
         try {
+            // Normalize inputs
+            $username = strtolower($username);
+            $firstname = strtolower($firstname);
+            $lastname = strtolower($lastname);
+            $email = strtolower($email);
+
+            // Add user to database
             $db = Database::getInstance();
             $db->execute(
                 "INSERT INTO users (username, first_name, last_name, email, pwhash)" .
                 "VALUES (?, ?, ?, ?, ?)",
                 array($username, $firstname, $lastname, $email, $pwhash)
             );
+
+            // Login after successful registration
             self::login($username, $password);
         } catch (PDOException $e) {
             // Unique key violation
@@ -53,6 +64,9 @@ class User
 
     public static function login($username, $password)
     {
+        // Usernames are stored in lowercase
+        $username = strtolower($username);
+
         $db = Database::getInstance();
         $user = $db->fetch('SELECT * FROM users  WHERE username = ?', array($username));
         if (password_verify($password, $user['pwhash'])) {
@@ -96,6 +110,9 @@ class User
 
     public static function inGroup($group, $user_id = NULL)
     {
+        // Groups are stored in lowercase
+        $group = strtolower($group);
+
         // If the user isn't authenticated and a specific user_id wasn't requested
         // return false because the current user is anonymous
         if (!self::isAuthenticated() && is_null($user_id)) {
@@ -129,6 +146,7 @@ class User
         $result = array();
         foreach ($users as $user) {
             $result[] = new User(
+                $user['id'],
                 $user['username'],
                 $user['first_name'],
                 $user['last_name'],
