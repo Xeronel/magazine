@@ -39,7 +39,7 @@ require_once 'includes/User.class.php';
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php
-                    if (User::is_authenticated()) {
+                    if (User::isAuthenticated()) {
                         echo '<li id="logout"><a href="/logout.php">Logout</a></li>';
                     } else {
                         echo '<li id="login"><a href="/login.php">Login</a></li>';

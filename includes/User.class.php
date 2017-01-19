@@ -74,7 +74,7 @@ class User
         exit();
     }
 
-    public static function is_authenticated()
+    public static function isAuthenticated()
     {
         if (isset($_SESSION['user_id'])) {
             return true;
