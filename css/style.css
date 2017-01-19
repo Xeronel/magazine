@@ -48,6 +48,10 @@ body {
     background-color: white;
 }
 
+.panel-body > h3:first-of-type {
+    margin-top: 0;
+}
+
 td > a {
     display: block;
 }
