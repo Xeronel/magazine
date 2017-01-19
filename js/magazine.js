@@ -31,14 +31,13 @@ userList.init = function() {
         // Initialize DataTable
         e.DataTable({
             order: [[0, 'asc']],
-            columnDefs: [
-                {
-                    targets: 'user',
-                    render: function(data, type, full, meta) {
-                        return '<a href="/edit_user.php?uid=' + full[0] + '">' + data + '</a>';
-                    }
+            autoWidth: false,
+            columnDefs: [{
+                targets: 'user',
+                render: function(data, type, full, meta) {
+                    return '<a href="/edit_user.php?uid=' + full[0] + '">' + data + '</a>';
                 }
-            ]
+            }]
         });
     }
 }
