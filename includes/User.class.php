@@ -108,5 +108,11 @@ class User
             return false;
         }
     }
+
+    public static function userList()
+    {
+        $db = Database::getInstance();
+        return $db->fetchAll("SELECT * FROM users");
+    }
 }
 ?>
