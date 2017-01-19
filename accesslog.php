@@ -24,7 +24,7 @@ if (!User::inGroup('admin')) {
                 </thead>
                 <tbody>
                     <?php
-                    foreach (Log::getLog() as $log) {
+                    foreach (Log::getAccessLog() as $log) {
                         echo '<tr>';
                         echo "<td>{$log->user_id}</td>";
                         echo "<td>{$log->username}</td>";
