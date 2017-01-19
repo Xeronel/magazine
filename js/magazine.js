@@ -5,6 +5,7 @@ nav.idMap = {
     'login.php': '#login',
     'stats.php': '#stats',
     'userlist.php': '#user_list',
+    'accesslog.php': '#access_log',
     '': '#home'
 }
 nav.setActive = function() {
@@ -24,7 +25,7 @@ nav.setActive = function() {
 
 // UserList Object
 var userList = {};
-// Statistics initialize function
+// User list initialize function
 userList.init = function() {
     var e = $('#userlist');
     if (e.length > 0) {
@@ -42,7 +43,29 @@ userList.init = function() {
     }
 }
 
-$(function() {
-    nav.setActive();
-    userList.init();
-});
+// AccessLog Object
+var accessLog = {};
+// Access log initialize function
+accessLog.init = function() {
+    var e = $('#accesslog');
+    if (e.length > 0) {
+        e.DataTable({
+            order: [[3, 'desc']],
+            autoWidth: false,
+            columnDefs: [
+                {width: "15%", targets: 0},
+                {
+                    targets: 'user',
+                    render: function(data, type, full, meta) {
+                        return '<a href="/edit_user.php?uid=' + full[0] + '">' + data + '</a>';
+                    }
+                }]
+            });
+        }
+    }
+
+    $(function() {
+        nav.setActive();
+        userList.init();
+        accessLog.init();
+    });

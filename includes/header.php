@@ -50,6 +50,11 @@ Log::pageView();
                         echo '<li id="user_list">';
                         echo '<a href="/userlist.php">User List</a>';
                         echo '</li>';
+
+                        // Access log link
+                        echo '<li id="access_log">';
+                        echo '<a href="/accesslog.php">Access Log</a>';
+                        echo '</li>';
                     } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
