@@ -12,6 +12,8 @@ class User
     public $lastname;
     public $email;
 
+    private const ANONYMOUS_ID = 2;
+
     public function __construct($id, $username, $firstname, $lastname, $email)
     {
         $this->id = $id;
@@ -167,6 +169,11 @@ class User
             return false;
         }
 
+        // Don't allow the anonymous user to be deleted
+        if ($user_id == self::ANONYMOUS_ID) {
+            return false;
+        }
+
         $db = Database::getInstance();
         $result = $db->execute('DELETE FROM users WHERE id = ?', array($user_id));
         return $result;
@@ -187,6 +194,15 @@ class User
         }
 
         return $db->execute($query, $params);
+    }
+
+    public static function getCurrentUser()
+    {
+        if (self::isAuthenticated()) {
+            return self::find($_SESSION['user_id']);
+        } else {
+            return self::find(self::ANONYMOUS_ID);
+        }
     }
 
     private static function createUser($user_array) {
