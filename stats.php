@@ -12,45 +12,46 @@ if (!User::inGroup('admin')) {
 $popular = Stats::mostPopularPage();
 ?>
 
-<div class="row">
-    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <div class="panel-heading">Stats Report</div>
-        <div class="panel-body">
-            <h3>Site Stats</h3>
-            <div class="input-group">
-                <label>Page Views:</label> <?php echo Stats::totalPageViews(); ?>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
+            <div class="panel-heading">Stats Report</div>
+            <div class="panel-body">
+                <h3>Site Stats</h3>
+                <div class="input-group">
+                    <label>Page Views:</label> <?php echo Stats::totalPageViews(); ?>
+                </div>
 
-            <div class="input-group">
-                <label>Most Popular:</label>
-                <a href="<?php echo $popular['page']; ?>">
-                    <?php echo "{$popular['page']}"; ?>
-                </a> <?php echo " ({$popular['total']} views)"; ?>
-            </div>
+                <div class="input-group">
+                    <label>Most Popular:</label>
+                    <a href="<?php echo $popular['page']; ?>">
+                        <?php echo "{$popular['page']}"; ?>
+                    </a> <?php echo " ({$popular['total']} views)"; ?>
+                </div>
 
-            <h3>View Totals</h3>
-            <?php
-            foreach (Stats::pageViews() as $page) {
-                echo '<div class="input-group">';
-                echo "<label>{$page->page}:</label> {$page->views}";
-                echo '</div>';
-            }
-            ?>
+                <h3>View Totals</h3>
+                <?php
+                foreach (Stats::pageViews() as $page) {
+                    echo '<div class="input-group">';
+                    echo "<label>{$page->page}:</label> {$page->views}";
+                    echo '</div>';
+                }
+                ?>
 
-            <h3>Users Stats</h3>
-            <div class="input-group">
-                <label>Total Users:</label> <?php echo Stats::totalUsers(); ?>
-            </div>
-            <div class="input-group">
-                <label>Total Logins:</label> <?php echo Stats::totalLogins(); ?>
-            </div>
-            <div class="input-group">
-                <label>Total Admins:</label> <?php echo Stats::totalAdmins(); ?>
+                <h3>Users Stats</h3>
+                <div class="input-group">
+                    <label>Total Users:</label> <?php echo Stats::totalUsers(); ?>
+                </div>
+                <div class="input-group">
+                    <label>Total Logins:</label> <?php echo Stats::totalLogins(); ?>
+                </div>
+                <div class="input-group">
+                    <label>Total Admins:</label> <?php echo Stats::totalAdmins(); ?>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <?php
 include_once 'includes/footer.html';
 ?>
