@@ -23,6 +23,7 @@ $magazines = array(
     ),
 );
 
+echo '<div class="container">';
 for ($i=0; $i < count($magazines); $i++) {
     $magazine = $magazines[$i];
     $even = $i % 2 == 0;
@@ -52,6 +53,7 @@ for ($i=0; $i < count($magazines); $i++) {
         echo '</div>';
     }
 }
+echo '</div>';
 
 include_once('includes/footer.html');
 ?>
