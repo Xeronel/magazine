@@ -3,11 +3,9 @@ include_once 'includes/header.php';
 include_once 'includes/Email.class.php';
 
 $requires = array('name', 'email', 'body');
-print_r(array_keys($_POST));
 if (!array_diff($requires, array_keys($_POST))) {
     $email = new Email();
-    $result = $email->send($_POST['email'], $_POST['name'], 'Contact Us', $_POST['body']);
-    print_r($result);
+    $email->send($_POST['email'], $_POST['name'], 'Contact Us', $_POST['body']);
 }
 ?>
 

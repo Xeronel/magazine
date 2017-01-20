@@ -206,6 +206,18 @@ class User
         return $db->execute($query, $params);
     }
 
+    public static function getAdminEmail()
+    {
+        $db = Database::getInstance();
+        $email = $db->fetch(
+            "SELECT * FROM users
+            LEFT JOIN permissions
+            ON permissions.user_id = users.id
+            WHERE group_name = 'admin'"
+        )['email'];
+        return $email;
+    }
+
     public static function getCurrentUser()
     {
         if (self::isAuthenticated()) {

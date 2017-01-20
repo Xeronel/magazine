@@ -1,5 +1,6 @@
 <?php
 require 'PHPMailer/PHPMailerAutoload.php'; // https://github.com/PHPMailer/PHPMailer
+require_once 'includes/User.class.php';
 
 /**
 * Email client
@@ -34,7 +35,7 @@ class Email
 
         // Setup mail client
         $mail->setFrom($config['mail_from'], $config['mail_name']);
-        $mail->addAddress('ripster@ratio.ninja');
+        $mail->addAddress(Users::getAdminEmail());
         $mail->isHTML(true);
         $this->mail = $mail;
     }
