@@ -39,7 +39,6 @@ for ($i=0; $i < count($magazines); $i++) {
     // Magazine panel header
     echo '<div class="panel-heading"><div>';
     echo "<span>{$magazine['title']}</span>";
-    echo "<a class='btn btn-warning' href='{$magazine['link']}'>Buy Now</a>";
     echo '</div></div>';
 
     // Magazine panel body
