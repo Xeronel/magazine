@@ -61,14 +61,6 @@ body {
     max-height: 300px;
 }
 
-.magazine > .panel-heading > div {
-    text-align: right;
-}
-
-.magazine > .panel-heading > div > span {
-    float: left;
-}
-
 td > a {
     display: block;
 }

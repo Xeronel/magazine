@@ -37,9 +37,9 @@ for ($i=0; $i < count($magazines); $i++) {
     }
 
     // Magazine panel header
-    echo '<div class="panel-heading"><div>';
-    echo "<span>{$magazine['title']}</span>";
-    echo '</div></div>';
+    echo '<div class="panel-heading">';
+    echo "{$magazine['title']}";
+    echo '</div>';
 
     // Magazine panel body
     echo '<div class="panel-body">';
