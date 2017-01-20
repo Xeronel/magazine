@@ -40,6 +40,9 @@ Log::pageView();
                     <li id="home">
                         <a href="/">Home</a>
                     </li>
+                    <li id="contact">
+                        <a href="/contact.php">Contact Us</a>
+                    </li>
                     <?php if(User::inGroup('admin')) {
                         // Statistics link
                         echo '<li id="stats">';
