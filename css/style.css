@@ -69,10 +69,6 @@ body {
     float: left;
 }
 
-.magazine > .panel-heading > div > a.btn {
-    padding: 0;
-}
-
 td > a {
     display: block;
 }
