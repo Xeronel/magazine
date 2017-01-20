@@ -1,38 +1,57 @@
-<?php include_once('includes/header.php'); ?>
+<?php include_once('includes/header.php');
 
-<div class="row">
-    <div class="magazine col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1">
-        <div class="panel-heading">Travel &amp; Leisure</div>
-        <div class="panel-body">
-            <div style="text-align: center;">
-                <img class="img-responsive" src="https://images-na.ssl-images-amazon.com/images/I/71-CpdbhtUL._SL1024_.jpg">
-            </div>
-        </div>
-    </div>
+$magazines = array(
+    array(
+        'title' => 'Cycle World',
+        'link' => 'https://www.amazon.com/gp/product/B002PXVYD2',
+        'img' => 'https://images-na.ssl-images-amazon.com/images/I/71OsAsgkRpL._SL1024_.jpg'
+    ),
+    array(
+        'title' => 'Flying',
+        'link' => 'https://www.amazon.com/gp/product/B002G551F6',
+        'img' => 'https://images-na.ssl-images-amazon.com/images/I/71dTSH9Ib8L._SL1024_.jpg'
+    ),
+    array(
+        'title' => 'Outdoor Life',
+        'link' => 'https://www.amazon.com/gp/product/B002CT512O',
+        'img' => 'https://images-na.ssl-images-amazon.com/images/I/71RfFoJ3XnL._SL1024_.jpg'
+    ),
+    array(
+        'title' => 'Popular Science',
+        'link' => 'https://www.amazon.com/gp/product/B002CT515Q',
+        'img' => 'https://images-na.ssl-images-amazon.com/images/I/61mYJCuKuML._SL1024_.jpg'
+    ),
+);
 
-    <div class="magazine col-lg-5 col-md-5 col-sm-5 col-xs-5">
-        <div class="panel-heading">Food &amp; Wine</div>
-        <div class="panel-body">
-            <img class="img-responsive" src="https://images-na.ssl-images-amazon.com/images/I/71vgmF-73LL._SL1024_.jpg">
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="magazine col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1">
-        <div class="panel-heading">Brides</div>
-        <div class="panel-body">
-            <div style="text-align: center;">
-                <img class="img-responsive" src="https://images-na.ssl-images-amazon.com/images/I/71j--D6ltdL._SL1024_.jpg">
-            </div>
-        </div>
-    </div>
+for ($i=0; $i < count($magazines); $i++) {
+    $magazine = $magazines[$i];
+    $even = $i % 2 == 0;
 
-    <div class="magazine col-lg-5 col-md-5 col-sm-5 col-xs-5">
-        <div class="panel-heading">Cycle World</div>
-        <div class="panel-body">
-            <img class="img-responsive" src="https://images-na.ssl-images-amazon.com/images/I/71OsAsgkRpL._SL1024_.jpg">
-        </div>
-    </div>
-</div>
+    // if even start a new row
+    if ($even) {
+        echo '<div class="row">';
+        echo '<div class="magazine col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1">';
+    } else {
+        echo '<div class="magazine col-lg-5 col-md-5 col-sm-5 col-xs-5">';
+    }
 
-<?php include_once('includes/footer.html'); ?>
+    // Magazine panel header
+    echo '<div class="panel-heading"><div>';
+    echo "<span>{$magazine['title']}</span>";
+    echo "<a class='btn btn-warning' href='{$magazine['link']}'>Buy Now</a>";
+    echo '</div></div>';
+
+    // Magazine panel body
+    echo '<div class="panel-body">';
+    echo "<img class='img-responsive' src='{$magazine['img']}'>";
+    echo '</div>';
+    echo '</div>';
+
+    // if odd end the row
+    if (!$even) {
+        echo '</div>';
+    }
+}
+
+include_once('includes/footer.html');
+?>
