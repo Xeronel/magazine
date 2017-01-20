@@ -7,6 +7,7 @@ nav.idMap = {
     'userlist.php': '#user_list',
     'accesslog.php': '#access_log',
     'weblog.php': '#web_log',
+    'contact.php': '#contact',
     '': '#home'
 }
 nav.setActive = function() {
