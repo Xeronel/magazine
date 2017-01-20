@@ -52,6 +52,15 @@ body {
     margin-top: 0;
 }
 
+.magazine {
+    margin-bottom: 30px;
+}
+
+.magazine img {
+    margin: auto;
+    max-height: 300px;
+}
+
 td > a {
     display: block;
 }
