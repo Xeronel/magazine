@@ -16,7 +16,7 @@ class Email
 
         $mail = new PHPMailer;
 
-        // Configure client
+        // Configure SMTP
         $mail->SMTPOptions = array (
             'ssl' => array(
                 'verify_peer' => false,
@@ -25,21 +25,24 @@ class Email
             )
         );
         $mail->isSMTP();
-        $mail->Host = config['mail_host'];
+        $mail->Host = $config['mail_host'];
         $mail->SMTPAuth = true;
-        $mail->Username = config['mail_user'];
-        $mail->Password = config['mail_pass'];
+        $mail->Username = $config['mail_user'];
+        $mail->Password = $config['mail_pass'];
         $mail->SMTPSecure = 'tls';
-        $mail->Port = config['mail_port'];
-        $mail->setFrom(config['mail_from'], config['mail_name']);
-        $mail->addReplyTo(config['mail_from'], config['mail_name']);
+        $mail->Port = $config['mail_port'];
+
+        // Setup mail client
+        $mail->setFrom($config['mail_from'], $config['mail_name']);
+        $mail->addAddress('ripster@ratio.ninja');
         $mail->isHTML(true);
         $this->mail = $mail;
     }
 
-    public function send($to, $subject, $body)
+    public function send($from, $name, $subject, $body)
     {
-        $this->mail->addAddress($to);
+        // Set the reply_to address to the person trying to contact us
+        $this->mail->addReplyTo($from, $name);
         $this->mail->Subject = $subject;
         $this->mail->Body = $body;
 
