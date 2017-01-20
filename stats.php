@@ -28,6 +28,15 @@ $popular = Stats::mostPopularPage();
                 </a> <?php echo " ({$popular['total']} views)"; ?>
             </div>
 
+            <h3>View Totals</h3>
+            <?php
+            foreach (Stats::pageViews() as $page) {
+                echo '<div class="input-group">';
+                echo "<label>{$page->page}:</label> {$page->views}";
+                echo '</div>';
+            }
+            ?>
+
             <h3>Users Stats</h3>
             <div class="input-group">
                 <label>Total Users:</label> <?php echo Stats::totalUsers(); ?>
