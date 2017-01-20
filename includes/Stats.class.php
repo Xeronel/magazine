@@ -22,6 +22,23 @@ class Stats
         return self::fetch($query)['total_logins'];
     }
 
+    public static function mostPopularPage()
+    {
+        $query = "SELECT page, total FROM
+        (SELECT id, page, COUNT(page) AS total
+        FROM web_log
+        GROUP BY page
+        ORDER BY total desc) a
+        LIMIT 1";
+
+        return self::fetch($query);
+    }
+
+    public static function totalAdmins()
+    {
+        return self::fetch("SELECT COUNT(*) FROM permissions WHERE group_name = 'admin'")['COUNT(*)'];
+    }
+
     private static function fetch($query)
     {
         $db = Database::getInstance();

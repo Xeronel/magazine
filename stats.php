@@ -8,6 +8,8 @@ if (!User::inGroup('admin')) {
     header('Location: /');
     exit();
 }
+
+$popular = Stats::mostPopularPage();
 ?>
 
 <div class="row">
@@ -20,15 +22,21 @@ if (!User::inGroup('admin')) {
             </div>
 
             <div class="input-group">
-                <label>Most Popular:</label> <?php echo Stats::totalUsers(); ?>
+                <label>Most Popular:</label>
+                <a href="<?php echo $popular['page']; ?>">
+                    <?php echo "{$popular['page']}"; ?>
+                </a> <?php echo " ({$popular['total']} views)"; ?>
             </div>
 
             <h3>Users Stats</h3>
             <div class="input-group">
+                <label>Total Users:</label> <?php echo Stats::totalUsers(); ?>
+            </div>
+            <div class="input-group">
                 <label>Total Logins:</label> <?php echo Stats::totalLogins(); ?>
             </div>
             <div class="input-group">
-                <label>Total Admins:</label> <?php echo Stats::totalUsers(); ?>
+                <label>Total Admins:</label> <?php echo Stats::totalAdmins(); ?>
             </div>
         </div>
     </div>
