@@ -13,7 +13,7 @@ $popular = Stats::mostPopularPage();
 ?>
 
 <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
         <div class="panel-heading">Stats Report</div>
         <div class="panel-body">
             <h3>Site Stats</h3>

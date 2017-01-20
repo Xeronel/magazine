@@ -30,9 +30,9 @@ for ($i=0; $i < count($magazines); $i++) {
     // if even start a new row
     if ($even) {
         echo '<div class="row">';
-        echo '<div class="magazine col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1">';
+        echo '<div class="magazine col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-12">';
     } else {
-        echo '<div class="magazine col-lg-5 col-md-5 col-sm-5 col-xs-5">';
+        echo '<div class="magazine col-lg-5 col-md-5 col-sm-5 col-xs-12">';
     }
 
     // Magazine panel header
