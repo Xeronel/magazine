@@ -35,7 +35,7 @@ class Email
 
         // Setup mail client
         $mail->setFrom($config['mail_from'], $config['mail_name']);
-        $mail->addAddress(Users::getAdminEmail());
+        $mail->addAddress(User::getAdminEmail());
         $mail->isHTML(true);
         $this->mail = $mail;
     }
