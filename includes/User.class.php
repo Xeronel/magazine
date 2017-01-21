@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/Database.class.php';
 require_once 'includes/Log.class.php';
+require_once 'includes/Email.class.php';
 
 /**
 * Provide user functions
@@ -45,6 +46,17 @@ class User
             $firstname = strtolower($firstname);
             $lastname = strtolower($lastname);
             $email = strtolower($email);
+
+            // Send mail on register
+            $config = parse_ini_file('config.ini');
+            $mail_client = new Email();
+            $mail_client->send_to(
+                $email,
+                $firstname,
+                'Your new account',
+                "<body>Hello {$username},<br>
+                Thank you for signing up! Your account name is {$username}."
+            );
 
             // Add user to database
             $db = Database::getInstance();

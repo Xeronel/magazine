@@ -8,12 +8,14 @@ require_once 'includes/User.class.php';
 class Email
 {
     private $mail;
+    private $config;
 
     function __construct()
     {
         // Config should be a copy of config-exmaple.ini
         // all entries are assumed to exist and be correct
         $config = parse_ini_file('config.ini');
+        $this->config = $config;
 
         $mail = new PHPMailer;
 
@@ -35,15 +37,30 @@ class Email
 
         // Setup mail client
         $mail->setFrom($config['mail_from'], $config['mail_name']);
-        $mail->addAddress(User::getAdminEmail());
         $mail->isHTML(true);
         $this->mail = $mail;
     }
 
     public function send($from, $name, $subject, $body)
     {
+        $this->mail->addAddress(User::getAdminEmail());
+
         // Set the reply_to address to the person trying to contact us
         $this->mail->addReplyTo($from, $name);
+        $this->mail->Subject = $subject;
+        $this->mail->Body = $body;
+
+        if(!$this->mail->send()) {
+            return $this->mail->ErrorInfo;
+        } else {
+            return 'Message sent!';
+        }
+    }
+
+    public function send_to($to, $name, $subject, $body)
+    {
+        $this->mail->addAddress($to, $name);
+        $this->mail->addReplyTo($this->config['mail_from'], $this->config['mail_name']);
         $this->mail->Subject = $subject;
         $this->mail->Body = $body;
 
