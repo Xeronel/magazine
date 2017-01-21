@@ -54,7 +54,7 @@ class User
                 $email,
                 $firstname,
                 'Your new account',
-                "<body>Hello {$username},<br>
+                "<body>Hello {$firstname},<br>
                 Thank you for signing up! Your account name is {$username}."
             );
 
